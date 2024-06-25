@@ -1,6 +1,5 @@
 package com.xaaef.tenancy;
-
-import com.xaaef.tenancy.entity.Person;
+ 
 import com.xaaef.tenancy.entity.Tenant;
 import com.xaaef.tenancy.repository.PersonRepository;
 import com.xaaef.tenancy.repository.TenantRepository;
@@ -12,8 +11,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.List; 
 
 
 @SpringBootTest
@@ -29,9 +27,9 @@ class JpaMultiTenancyTests {
     public void test1() {
         var tenants = tenantReps.saveAll(
                 List.of(
-                        Tenant.builder().tenantId("huawei").name("华为").createTime(LocalDateTime.now()).build(),
-                        Tenant.builder().tenantId("microsoft").name("微软").createTime(LocalDateTime.now()).build(),
-                        Tenant.builder().tenantId("pingan").name("平安").createTime(LocalDateTime.now()).build()
+                        Tenant.builder().tenantId("AMZN").name("amazon").createTime(LocalDateTime.now()).build(),
+                        Tenant.builder().tenantId("MSFT").name("microsoft").createTime(LocalDateTime.now()).build(),
+                        Tenant.builder().tenantId("GOOG").name("google").createTime(LocalDateTime.now()).build()
                 )
         );
         System.out.println(JsonUtils.toFormatJson(tenants));
@@ -52,8 +50,8 @@ class JpaMultiTenancyTests {
                 .withMatcher("name", ExampleMatcher.GenericPropertyMatcher::exact);
         var example = Example.of(
                 Tenant.builder()
-                        .tenantId("microsoft")
-                        .name("华为")
+                        .tenantId("MSFT")
+                        .name("amazon")
                         .build(),
                 matcher);
         List<Tenant> all = tenantReps.findAll(example);

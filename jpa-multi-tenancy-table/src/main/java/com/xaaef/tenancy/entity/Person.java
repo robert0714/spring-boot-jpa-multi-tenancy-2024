@@ -25,7 +25,7 @@ public class Person implements java.io.Serializable {
     private Integer age;
 
     /**
-     * hibernate 6.x 多租户注解
+     * hibernate 6.x Multi-tenancy Annotation
      *
      * @author WangChenChen
      * @date 2022/12/8 13:57

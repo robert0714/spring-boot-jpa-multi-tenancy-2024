@@ -2,7 +2,7 @@ package com.xaaef.tenancy.config;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.MultiTenancyStrategy;
+
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 import static com.xaaef.tenancy.config.CustomDataSources.TENANT_ID_PREFIX;
 import static com.xaaef.tenancy.util.TenantUtils.DEFAULT_TENANT_ID;
-import static org.hibernate.cfg.AvailableSettings.MULTI_TENANT;
+
 import static org.hibernate.cfg.AvailableSettings.MULTI_TENANT_CONNECTION_PROVIDER;
 
 
@@ -32,7 +32,7 @@ import static org.hibernate.cfg.AvailableSettings.MULTI_TENANT_CONNECTION_PROVID
 @Slf4j
 @Component
 @AllArgsConstructor
-public class CustomTenantProvider implements MultiTenantConnectionProvider, HibernatePropertiesCustomizer {
+public class CustomTenantProvider implements MultiTenantConnectionProvider<String>, HibernatePropertiesCustomizer {
 
     private final DataSource dataSource;
 
@@ -90,7 +90,8 @@ public class CustomTenantProvider implements MultiTenantConnectionProvider, Hibe
     @Override
     public void customize(Map<String, Object> hibernateProperties) {
         hibernateProperties.put(MULTI_TENANT_CONNECTION_PROVIDER, this);
-        hibernateProperties.put(MULTI_TENANT, MultiTenancyStrategy.DATABASE);
+      //https://github.com/hibernate/hibernate-orm/blob/6.0/migration-guide.adoc#multitenancy-simplification
+//        hibernateProperties.put(MULTI_TENANT, MultiTenancyStrategy.DATABASE);
     }
 
 

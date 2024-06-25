@@ -23,11 +23,11 @@ public class TenantUtils {
     public final static String X_TENANT_ID = "x-tenant-id";
 
     // 默认的租户ID
-    public final static String DEFAULT_TENANT_ID = "master";
+    public final static String DEFAULT_TENANT_ID = "public";
 
     public final static String X_PROJECT_ID = "x-project-id";
 
-    public final static String DEFAULT_PROJECT_ID = "master";
+    public final static String DEFAULT_PROJECT_ID = "public";
 
     private final static ThreadLocal<String> TENANT_ID_THREAD_LOCAL = new NamedInheritableThreadLocal<>("TENANT_ID_THREAD_LOCAL");
 

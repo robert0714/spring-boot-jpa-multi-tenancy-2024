@@ -1,7 +1,6 @@
 package com.xaaef.tenancy.controller;
 
 import com.xaaef.tenancy.entity.Person;
-import com.xaaef.tenancy.repository.PersonRepository;
 import com.xaaef.tenancy.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

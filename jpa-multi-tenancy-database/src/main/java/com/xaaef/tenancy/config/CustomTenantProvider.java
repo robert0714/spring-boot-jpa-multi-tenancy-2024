@@ -1,20 +1,17 @@
 package com.xaaef.tenancy.config;
-
-import com.xaaef.tenancy.util.TenantUtils;
+ 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.hibernate.HibernateException;
-import org.hibernate.MultiTenancyStrategy;
-import org.hibernate.engine.jdbc.connections.spi.AbstractDataSourceBasedMultiTenantConnectionProviderImpl;
-import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
+import org.apache.commons.lang3.StringUtils; 
+
+import org.hibernate.engine.jdbc.connections.spi.AbstractDataSourceBasedMultiTenantConnectionProviderImpl; 
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.Map;
 
-import static org.hibernate.cfg.AvailableSettings.MULTI_TENANT;
+
 import static org.hibernate.cfg.AvailableSettings.MULTI_TENANT_CONNECTION_PROVIDER;
 
 
@@ -32,7 +29,7 @@ import static org.hibernate.cfg.AvailableSettings.MULTI_TENANT_CONNECTION_PROVID
 @Slf4j
 @Component
 @AllArgsConstructor
-public class CustomTenantProvider extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl implements HibernatePropertiesCustomizer {
+public class CustomTenantProvider extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl<String> implements HibernatePropertiesCustomizer {
 
     private final CustomDataSources dataSources;
 
@@ -55,9 +52,13 @@ public class CustomTenantProvider extends AbstractDataSourceBasedMultiTenantConn
 
     @Override
     public void customize(Map<String, Object> hibernateProperties) {
-        hibernateProperties.put(MULTI_TENANT_CONNECTION_PROVIDER, this);
-        hibernateProperties.put(MULTI_TENANT, MultiTenancyStrategy.DATABASE);
+        hibernateProperties.put(MULTI_TENANT_CONNECTION_PROVIDER, this);        
+        //https://github.com/hibernate/hibernate-orm/blob/6.0/migration-guide.adoc#multitenancy-simplification
+//      hibernateProperties.put(MULTI_TENANT, MultiTenancyStrategy.DATABASE);
     }
+
+
+	 
 
 
 }

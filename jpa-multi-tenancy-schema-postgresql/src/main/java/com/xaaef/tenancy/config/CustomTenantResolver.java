@@ -1,40 +1,28 @@
 package com.xaaef.tenancy.config;
 
 import com.xaaef.tenancy.util.TenantUtils;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.hibernate.MultiTenancyStrategy;
-import org.hibernate.cfg.Environment;
+import lombok.AllArgsConstructor; 
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+import java.util.Objects;
 
-import static org.hibernate.cfg.AvailableSettings.MULTI_TENANT;
 import static org.hibernate.cfg.AvailableSettings.MULTI_TENANT_IDENTIFIER_RESOLVER;
 
 
-/**
- * <p>
- * </p>
- *
- * @author WangChenChen
- * @version 1.1
- * @date 2022/11/25 10:58
- */
 
-
-@Slf4j
 @Component
 @AllArgsConstructor
-public class CustomTenantResolver implements CurrentTenantIdentifierResolver,
+public class CustomTenantResolver implements CurrentTenantIdentifierResolver<String>,
         HibernatePropertiesCustomizer {
-
+	
+	public static final String DEFAULT_TENANT = "DEFAULT";
 
     @Override
-    public String resolveCurrentTenantIdentifier() {
-        return TenantUtils.getTenantId();
+    public String resolveCurrentTenantIdentifier() { 
+        return Objects.requireNonNullElse(TenantUtils.getTenantId(), DEFAULT_TENANT);
     }
 
 

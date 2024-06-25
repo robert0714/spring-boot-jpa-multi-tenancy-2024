@@ -1,0 +1,18 @@
+services:
+  mysql:
+    image: docker.io/library/mysql:8.0.37
+    container_name: mysql
+    volumes:
+ #   - /var/run/docker.sock:/var/run/docker.sock
+    - mysql-data:/var/lib/mysql    
+    environment:
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=molly_master
+      - MYSQL_ROOT_PASSWORD=hello
+      - EXTRA_OPTS="--lower_case_table_names=1"
+      - TZ=Asia/Taipei
+    ports:
+      - "3306:3306" 
+volumes: 
+  mysql-data: { }

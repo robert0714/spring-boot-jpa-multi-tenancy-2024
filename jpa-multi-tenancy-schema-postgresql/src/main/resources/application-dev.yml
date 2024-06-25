@@ -5,4 +5,3 @@ spring:
     username: postgres
     password: hello
     type: com.zaxxer.hikari.HikariDataSource
-

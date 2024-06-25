@@ -1,9 +1,9 @@
 package com.xaaef.tenancy.interceptor;
 
-import cn.hutool.core.util.StrUtil;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.xaaef.tenancy.util.JsonResult;
 import com.xaaef.tenancy.util.JsonUtils;
@@ -51,7 +51,7 @@ public class TenantIdInterceptor implements HandlerInterceptor {
                 TenantUtils.setTenantId(tenantId);
                 return HandlerInterceptor.super.preHandle(request, response, handler);
             } else {
-                renderString(response, StrUtil.format("请求头必须添加 {}", X_TENANT_ID));
+                renderString(response, String.format("HttpRequest' header must have %s", X_TENANT_ID));
                 return false;
             }
         }

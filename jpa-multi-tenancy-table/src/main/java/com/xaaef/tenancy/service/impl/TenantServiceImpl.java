@@ -21,7 +21,7 @@ public class TenantServiceImpl implements TenantService {
     @Override
     public Tenant save(Tenant entity) {
         if (tenantReps.existsById(entity.getTenantId())) {
-            var err = String.format("租户ID %s 已经存在了！", entity.getTenantId());
+            var err = String.format("Tenant ID %s already exists！", entity.getTenantId());
             throw new RuntimeException(err);
         }
         return tenantReps.save(entity);

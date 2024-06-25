@@ -21,7 +21,7 @@ public class TenantController {
     @PostMapping
     public Tenant save(@RequestBody Tenant tenant) {
         if (StringUtils.isBlank(tenant.getTenantId())) {
-            throw new RuntimeException("租户ID 必须填写！");
+            throw new RuntimeException("tenantId is required");
         }
         if (tenant.getCreateTime() == null) {
             tenant.setCreateTime(LocalDateTime.now());

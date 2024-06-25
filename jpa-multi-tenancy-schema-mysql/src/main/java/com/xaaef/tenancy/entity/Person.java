@@ -1,10 +1,8 @@
 package com.xaaef.tenancy.entity;
 
-import javax.persistence.*;
-
+import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Map;
 import java.util.Set;
 
 

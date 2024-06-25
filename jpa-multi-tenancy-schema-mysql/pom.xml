@@ -21,9 +21,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <hutool.version>5.8.10</hutool.version>
+        <hutool.version>5.8.28</hutool.version>
 
-        <spring-boot.version>2.7.6</spring-boot.version>
+        <spring-boot.version>3.2.7</spring-boot.version>
     </properties>
 
 
@@ -34,10 +34,10 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>org.liquibase</groupId>
@@ -125,6 +125,13 @@
                         </exclude>
                     </excludes>
                 </configuration>
+                <executions>
+	                <execution>
+	                    <goals>
+	                        <goal>repackage</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
             </plugin>
         </plugins>
     </build>

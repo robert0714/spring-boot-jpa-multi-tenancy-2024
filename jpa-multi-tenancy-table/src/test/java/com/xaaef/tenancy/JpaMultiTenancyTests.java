@@ -29,9 +29,9 @@ class JpaMultiTenancyTests {
     public void test1() {
         var tenants = tenantReps.saveAll(
                 List.of(
-                        Tenant.builder().tenantId("huawei").name("华为").createTime(LocalDateTime.now()).build(),
-                        Tenant.builder().tenantId("microsoft").name("微软").createTime(LocalDateTime.now()).build(),
-                        Tenant.builder().tenantId("pingan").name("平安").createTime(LocalDateTime.now()).build()
+                        Tenant.builder().tenantId("AMZN").name("amazon").createTime(LocalDateTime.now()).build(),
+                        Tenant.builder().tenantId("MSFT").name("microsoft").createTime(LocalDateTime.now()).build(),
+                        Tenant.builder().tenantId("GOOG").name("google").createTime(LocalDateTime.now()).build()
                 )
         );
         System.out.println(JsonUtils.toFormatJson(tenants));
@@ -52,8 +52,8 @@ class JpaMultiTenancyTests {
                 .withMatcher("name", ExampleMatcher.GenericPropertyMatcher::exact);
         var example = Example.of(
                 Tenant.builder()
-                        .tenantId("microsoft")
-                        .name("华为")
+                        .tenantId("MSFT")
+                        .name("amazon")
                         .build(),
                 matcher);
         List<Tenant> all = tenantReps.findAll(example);

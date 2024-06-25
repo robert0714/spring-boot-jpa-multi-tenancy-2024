@@ -1,21 +1,20 @@
-# spring boot jpa 多租户 基于 数据库（DataBase）
+# spring boot jpa 多租戶 基於 資料庫（DataBase）
 
-## 创建表结构使用的是 liquibase ，创建租户时，自动生成 表结构
-## 此方式，是 多连接池。每一个租户都添加一个数据库连接池，在 map 中。
-## 使用的时候，根据租户 id 获取连接池
-启动流程
+## 創建表結構使用的是 liquibase ，創建租戶時，自動生成 表結構
+## 此方式，是 多連接池。每一個租戶都添加一個資料庫連接池，在 map 中。
+## 使用的時候，根據租戶 id 獲取連接池
+啟動流程
+
+````
+
+一.創建一個 `molly_master` 的 資料庫。
+    這是預設的 資料庫 如果，想修改名稱。需要修改兩個地方
+    1. `CustomDataSources` 類中的 TENANT_ID_PREFIX 常量。這是預設生成資料庫的首碼名稱。用於區分項目
+    2. `TenantUtils` 類中的 DEFAULT_TENANT_ID 常量。這是預設租戶的資料庫
+
+二.修改 `application-dev.yml` 中的資料庫連接池位址
+
+三. "REST API" 目錄中 Test API.http 測試 api 介面
 
 ````
 
-一.创建一个 `molly_master` 的 数据库。
-    这是默认的 数据库 如果，想修改名称。需要修改两个地方
-    1. `CustomDataSources` 类中的 TENANT_ID_PREFIX 常量。这是默认生成数据库的前缀名称。用于区分项目
-    2. `TenantUtils` 类中的 DEFAULT_TENANT_ID 常量。这是默认租户的数据库
-
-
-二.修改 `application-dev.yml` 中的数据库连接池地址
-
-
-三. "REST API" 目录中 Test API.http 测试 api 接口
-
-````
